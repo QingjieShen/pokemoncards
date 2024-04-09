@@ -10,8 +10,9 @@ export default function Header() {
 
     return (
         <header>
-            <nav>
-                <NavLink to="home" >Home</NavLink>
+            <nav className="headerNav">
+                <NavLink to="/" style={({isActive}) => isActive ? activeStyles : null}>Home</NavLink>
+                <NavLink to="mypokemons" style={({isActive}) => isActive ? activeStyles : null}>My Sprites</NavLink>
             </nav>
         </header>
     )
