@@ -5,7 +5,7 @@ export default function Home() {
     const [pokemons, setPokemons] = React.useState([])
     const [loading, setLoading] = React.useState(false)
 
-    const localPokemons = React.useRef(JSON.parse(localStorage.getItem("myPokemons")["myPokemons"] || "[]" ))
+    const localPokemons = React.useRef(JSON.parse(localStorage.getItem("myPokemons") || "[]" ))
     
     console.log(localPokemons)
 
@@ -79,7 +79,7 @@ export default function Home() {
             console.log("push the first pokemon")
         }
         e.target.disabled = true
-        localStorage.setItem("myPokemons", JSON.stringify(localPokemons))
+        localStorage.setItem("myPokemons", JSON.stringify(localPokemons.current))
         console.log("localPokemons:", localPokemons)
     }
 
