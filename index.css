@@ -143,3 +143,46 @@ footer p {
     font-weight: 600;
     transition: all .2s ease-in-out;
 }
+
+/* My Pokemons gallery page */
+.my-pokemons-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-pokemons-wrapper h1 {
+    margin-top: 5rem;
+}
+
+.pokemons-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.pokemons-gallery a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+}
+
+.my-pokemon-unit {
+    width: 90%;
+    background-color: rgb(133, 202, 205);
+    margin: auto 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-pokemon-unit img {
+    width: 100%;
+}
+
+.my-pokemon-unit h3 {
+    font-size: 1.5rem;
+}

@@ -1,17 +1,26 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
+
 export default function MyPokemons() {
+    const localPokemons = JSON.parse(localStorage.getItem("myPokemons"))
+    // console.log(localPokemons)
+    const pokemonsElements = localPokemons.map(localPokemon => (
+        <div key={localPokemon.index} className="my-pokemon-unit">
+            <Link to={localPokemon.index}>
+                <img src={localPokemon.url} />
+                <h3>{localPokemon.name}</h3>
+            </Link>
+        </div>
+    ))
+
     return (
         <div>
-            <div>
-                <h1>Don’t squeeze in a sedan when you could relax in a van.</h1>
-                <p>Our mission is to enliven your road trip with the perfect travel van rental. Our vans are recertified before each trip to ensure your travel plans can go off without a hitch. (Hitch costs extra 😉)</p>
-                <p>Our team is full of vanlife enthusiasts who know firsthand the magic of touring the world on 4 wheels.</p>
-            </div>
-            <div>
-                <h2>Your destination is waiting.<br />Your van is ready.</h2>
-                <Link className="link-button" to="/">Go and catch some sprites</Link>
+            <div className="my-pokemons-wrapper">
+                <h1>Here are your Pokemons</h1>
+                <div className="pokemons-gallery">
+                    {pokemonsElements}
+                </div>
             </div>
         </div>
     );
