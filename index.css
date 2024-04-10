@@ -34,8 +34,9 @@ footer {
     text-align: center;
     padding: 10px 0;
     background-color: rgb(133, 202, 205);
-    position: fixed;
-    bottom: 0;
+    /* position: fixed;
+    bottom: 0; */
+    margin-top: auto;
     width: 100%;
 }
 
@@ -145,7 +146,6 @@ footer p {
 }
 
 /* My Pokemons gallery page */
-
 .no-pokemon-div {
     display: flex;
     flex-direction: column;
