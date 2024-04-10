@@ -3,7 +3,9 @@ import { Link } from "react-router-dom"
 
 export default function Home() {
     const [pokemons, setPokemons] = React.useState([])
+    const [fetchingOffset, setFetchingOffset] = React.useState(Math.floor(Math.random() * 1292))
     const [loading, setLoading] = React.useState(false)
+    const url = `https://pokeapi.co/api/v2/pokemon/?offset=${fetchingOffset}&limit=10`
 
     const localPokemons = React.useRef(JSON.parse(localStorage.getItem("myPokemons") || "[]" ))
     
@@ -12,7 +14,7 @@ export default function Home() {
     React.useEffect(() => {
         async function loadPokemons() {
             setLoading(true)
-            const res = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20")
+            const res = await fetch(url)
             if (!res.ok) {
                 throw {
                     message: "Failed to fetch data"
@@ -24,7 +26,7 @@ export default function Home() {
             console.log("Pokemons Data after washing", pokemons)
         }
         loadPokemons()
-    }, [])
+    }, [fetchingOffset])
 
     function parseUrl(url) {
         return url.substring(url.substring(0, url.length - 2).lastIndexOf('/') + 1, url.length - 1)
@@ -41,6 +43,10 @@ export default function Home() {
         return washedData
     }
 
+    function refreshPokemons() {
+        setFetchingOffset(Math.floor(Math.random() * 1292))
+    }
+
     function getOriginalPokemon(id) {
         let currentPokemon = null
         pokemons.map(pokemon => {
@@ -53,7 +59,6 @@ export default function Home() {
 
     function updateCatchStatus(e) {
         e.target.disabled = true
-        console.log(e.target.disabled)
         e.target.parentElement.className = "pokemon-unit-disabled"
         e.target.textContent = "Captured"
     }
@@ -105,10 +110,11 @@ export default function Home() {
     return (
         <div className="home-container">
             <h1>Some Pokemons are visiting your home</h1>
-            <p>Try to catch them.</p>
+            <p>Click "Catch" to catch them.</p>
             <div className="pokemon-wrapper">
                 {pokemonsElements}
             </div>
+            <button className="home-refresh-btn" onClick={refreshPokemons}>Refresh</button>
         </div>
     )
 }

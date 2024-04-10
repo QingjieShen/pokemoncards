@@ -16,6 +16,9 @@ body {
     align-items: center;
     color: white;
     background-color: rgb(133, 202, 205);
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .headerNav a {
@@ -42,10 +45,38 @@ footer p {
     
 }
 
+.home-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.home-container h1 {
+    margin-top: 5rem;
+}
+
 .pokemon-wrapper {
     overflow-x: scroll;
     display: flex;
     flex-wrap: nowrap;
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.pokemon-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.home-refresh-btn {
+    margin: 3rem auto 6rem auto;
+    background-color: rgb(210, 116, 21);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    width: min(240px, 100%);
 }
 
 /* normal pokemon card in home page */
