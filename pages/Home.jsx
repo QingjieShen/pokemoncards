@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 export default function Home() {
     const [pokemons, setPokemons] = React.useState([])
     const [fetchingOffset, setFetchingOffset] = React.useState(Math.floor(Math.random() * 1292))
-    const [loading, setLoading] = React.useState(false)
+    const [isLoading, setIsLoading] = React.useState(false)
     const url = `https://pokeapi.co/api/v2/pokemon/?offset=${fetchingOffset}&limit=10`
 
     const localPokemons = React.useRef(JSON.parse(localStorage.getItem("myPokemons") || "[]" ))
@@ -13,7 +13,7 @@ export default function Home() {
 
     React.useEffect(() => {
         async function loadPokemons() {
-            setLoading(true)
+            setIsLoading(true)
             const res = await fetch(url)
             if (!res.ok) {
                 throw {
@@ -24,6 +24,7 @@ export default function Home() {
             console.log("Data fetched:", data)
             setPokemons(washData(data.results))
             console.log("Pokemons Data after washing", pokemons)
+            setIsLoading(false)
         }
         loadPokemons()
     }, [fetchingOffset])
@@ -111,9 +112,10 @@ export default function Home() {
         <div className="home-container">
             <h1>Some Pokemons are visiting your home</h1>
             <p>Click "Catch" to catch them.</p>
+            {isLoading ? <h3>Loading Pokemons Data, Hold on...</h3> : 
             <div className="pokemon-wrapper">
                 {pokemonsElements}
-            </div>
+            </div>}
             <button className="home-refresh-btn" onClick={refreshPokemons}>Refresh</button>
         </div>
     )
