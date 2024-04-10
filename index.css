@@ -14,6 +14,8 @@ body {
     height: 60px;
     display: flex;
     align-items: center;
+    color: white;
+    background-color: rgb(133, 202, 205);
 }
 
 .headerNav a {
@@ -28,10 +30,53 @@ footer {
     flex-direction: column;
     text-align: center;
     padding: 10px 0;
+    background-color: rgb(133, 202, 205);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 footer p {
     width: 100%;
     margin: 0 0 5px 0;
     
+}
+
+.pokemon-wrapper {
+    overflow-x: scroll;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.pokemon-unit {
+    width: 80%;
+    background-color: rgb(133, 202, 205);
+    margin: auto 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon-unit a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon-unit img {
+    width: 300px;
+}
+
+.pokemon-unit h3 {
+    font-size: 1.5rem;
+}
+
+.catch-button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(210, 116, 21);
+    color: white;
+    font-weight: 600;
 }

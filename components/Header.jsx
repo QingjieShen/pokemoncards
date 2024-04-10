@@ -12,7 +12,7 @@ export default function Header() {
         <header>
             <nav className="headerNav">
                 <NavLink to="/" style={({isActive}) => isActive ? activeStyles : null}>Home</NavLink>
-                <NavLink to="mypokemons" style={({isActive}) => isActive ? activeStyles : null}>My Sprites</NavLink>
+                <NavLink to="mypokemons" style={({isActive}) => isActive ? activeStyles : null}>My Pokemons</NavLink>
             </nav>
         </header>
     )
