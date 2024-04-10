@@ -51,10 +51,18 @@ export default function Home() {
         return currentPokemon
     }
 
+    function updateCatchStatus(e) {
+        e.target.disabled = true
+        console.log(e.target.disabled)
+        e.target.parentElement.className = "pokemon-unit-disabled"
+        e.target.textContent = "Captured"
+    }
+
     function catchPokemon(e) {
         // find the right pokemon by it's id.
         const currentPokemon = getOriginalPokemon(e.target.dataset.id)
-
+        // update catch status
+        updateCatchStatus(e)
         // check if this pokemon is already in the list
         if (localPokemons.current.length > 0) {
             for (const localPokemon of localPokemons.current) {
@@ -78,7 +86,6 @@ export default function Home() {
             })
             console.log("push the first pokemon")
         }
-        e.target.disabled = true
         localStorage.setItem("myPokemons", JSON.stringify(localPokemons.current))
         console.log("localPokemons:", localPokemons)
     }

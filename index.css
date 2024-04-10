@@ -48,6 +48,7 @@ footer p {
     flex-wrap: nowrap;
 }
 
+/* normal pokemon card in home page */
 .pokemon-unit {
     width: 80%;
     background-color: rgb(133, 202, 205);
@@ -73,10 +74,41 @@ footer p {
     font-size: 1.5rem;
 }
 
-.catch-button {
+.pokemon-unit .catch-button {
     width: 100%;
     padding: 10px;
     background-color: rgb(210, 116, 21);
     color: white;
     font-weight: 600;
+}
+
+/* Disabled pokemon card in home page */
+.pokemon-unit-disabled {
+    width: 80%;
+    background-color: rgb(205, 205, 205);
+    margin: auto 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all .2s ease-in-out;
+}
+
+.pokemon-unit-disabled img {
+    width: 300px;
+    filter: contrast(50%);
+    transition: all .2s ease-in-out;
+}
+
+.pokemon-unit-disabled h3 {
+    font-size: 1.5rem;
+}
+
+.pokemon-unit-disabled .catch-button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(146, 146, 146);
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    transition: all .2s ease-in-out;
 }
