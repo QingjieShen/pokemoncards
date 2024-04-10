@@ -1,9 +1,10 @@
 import React from "react";
-import { Link, useParams, useLocation } from "react-router-dom"
+import { Link, useParams, useLocation, useSearchParams } from "react-router-dom"
 
 export default function PokemonDetail() {
     const pokemonId = useParams()
     const [currentPokemonDetail, setCurrentPokemonDetail] = React.useState(null)
+
     const localPokemons = JSON.parse(localStorage.getItem("myPokemons"))
     const currentPokemon = findPokemon(pokemonId.id)
     const detailUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId.id}/`
