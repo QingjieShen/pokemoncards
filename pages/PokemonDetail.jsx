@@ -109,7 +109,9 @@ export default function PokemonDetail() {
                     <div className="stats">
                         {pokemonStatsEle}
                     </div>
-                    <button className="release-btn" onClick={() => {removePokemon(pokemonId)}}>Release</button>
+                    <Link to="../" relative="path">
+                        <button className="release-btn" onClick={() => {removePokemon(pokemonId)}}>Release</button>
+                    </Link>
                 </div>
             ) }
             
