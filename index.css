@@ -214,5 +214,69 @@ footer p {
 
 /* Pokemons detail page */
 .details-container {
+    padding:20px;
     margin-top: 5rem;
+    margin-bottom: auto;
+    width: 100%;
+}
+
+.back-btn {
+    display: block;
+    margin-bottom: 2rem;
+}
+
+.pokemon-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+
+.image-part img {
+    width: 100%;
+    background-color: rgb(133, 202, 205);
+    border-radius: 10px;
+}
+
+.info-part {
+
+}
+
+.info-part h3 {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+.info-part .attributes {
+    margin-left: 10px;
+}
+
+.info-part .attributes p {
+    margin: 0.6rem auto;
+}
+
+.star-img {
+    width: 1.1rem;
+    color: gold;
+}
+
+.attributes p {
+    border-bottom: solid 1px rgb(210, 116, 21);
+}
+
+.attributes b {
+    display: inline-block;
+    width: 100px;
+}
+
+
+.release-btn {
+    
 }

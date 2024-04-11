@@ -28,7 +28,7 @@ export default function MyPokemons() {
                 {pokemonsElements.length > 0 ?(<div className="pokemons-gallery">
                     {pokemonsElements}
                 </div>) : (
-                <div className="no-pokemon-div">
+                    <div className="no-pokemon-div">
                     <p>Please go to Home page to catch some.</p>
                     <Link to="/">
                         <button className="go-home-btn">Catch Pokemons</button>
