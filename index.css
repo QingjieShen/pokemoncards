@@ -276,6 +276,22 @@ footer p {
     width: 100px;
 }
 
+.stats {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.stats div {
+    margin: 0.6rem auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.stats span {
+    display: block;
+}
 
 .release-btn {
     

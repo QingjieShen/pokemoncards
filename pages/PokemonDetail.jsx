@@ -3,33 +3,40 @@ import { Link, useParams, useLocation, useSearchParams } from "react-router-dom"
 
 export default function PokemonDetail() {
     const pokemonId = useParams()
-    const [currentPokemonDetail, setCurrentPokemonDetail] = React.useState([])
+    const [currentPokemonDetail, setCurrentPokemonDetail] = React.useState({
+        types: [],
+        abilities: [],
+        stats: []
+    })
     const [isLoading, setIsLoading] = React.useState(false)
-    const [pokemonTypes, setPokemonTypes] = React.useState(null)
-    const [pokemonAbilities, setPokemonAbilities] = React.useState(null)
+    const [pokemonTypes, setPokemonTypes] = React.useState([])
+    const [pokemonAbilities, setPokemonAbilities] = React.useState([])
+    const [pokemonStats, setPokemonStats] = React.useState([])
 
     const localPokemons = JSON.parse(localStorage.getItem("myPokemons"))
     const currentPokemon = findPokemon(pokemonId.id)
     const detailUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId.id}/`
     // console.log(currentPokemon)
     React.useEffect(() => {
-        setIsLoading(true)
         async function fetchPokemonDetail() {
-            const res = await fetch(detailUrl)
-            const data = await res.json()
-            console.log("data:", data)
-            setCurrentPokemonDetail(() => {
-                console.log("currentPokemonDetail:", currentPokemonDetail)
-                return data
-            })
+            setIsLoading(true)
+            try {
+                const res = await fetch(detailUrl)
+                const data = await res.json()
+                console.log("data:", data)
+                setCurrentPokemonDetail(data)
+                setPokemonStats(data.stats)
+                setPokemonAbilities(data.abilities)
+                setPokemonTypes(data.types)
+            } catch (err) {
+                alert(err)
+            } finally {
+                console.log("currentPokemonDetail inside:", currentPokemonDetail)
+                setIsLoading(false)
+            }
         }
         fetchPokemonDetail()
-        
-        setIsLoading(false)
-        
     }, [])
-
-    
 
     // this function can be defined as a utility function
     function findPokemon(id) {
@@ -42,14 +49,19 @@ export default function PokemonDetail() {
         return targetPokemon
     }
 
-    if (currentPokemonDetail.length > 0) {
-        setPokemonTypes(currentPokemonDetail.types.map((poke, index) => {
-            return (<span key={index} className={poke.type.name}>{poke.type.name}</span>)
-        }))
-        setPokemonAbilities(currentPokemonDetail.abilities.map((poke, index) => {
-            return (<span key={index} className={poke.ability.name}>{poke.ability.name}</span>)
-        }))
-    }
+    console.log("currentPokemonDetail outside:", currentPokemonDetail)
+    console.log("pokemonTypes:", pokemonTypes)
+
+    const pokemonTypesEle = pokemonTypes.map((type, index) => {
+        return (<span key={index} className={type.type.name}>{type.type.name}</span>)
+    })
+    const pokemonAbilitiesEle = pokemonAbilities.map((ability, index) => {
+        return (<span key={index} className={ability.ability.name}>{ability.ability.name}</span>)
+    })
+    const pokemonStatsEle = pokemonStats.map((stat, index) => {
+        return (<div key={index}><span>{stat.stat.name}: </span><span>{stat.base_stat}</span></div>)
+    })
+    console.log("all extra data set")
 
     return (
         <div className="details-container">
@@ -64,7 +76,7 @@ export default function PokemonDetail() {
                         <div className="image-part">
                             <img className="detail-front-img" src={currentPokemon.url} alt="" />
                             <div className="type">
-                                {pokemonTypes}
+                                {pokemonTypesEle}
                             </div>
                         </div>
                         <div className="info-part">
@@ -78,18 +90,14 @@ export default function PokemonDetail() {
                                 <p><b>You have: </b>{currentPokemon.num}</p>
                             </div>
                             <div className="abilities">
-                                {pokemonAbilities}
+                                {pokemonAbilitiesEle}
                             </div>
                         </div>
+                        <div className="stats">
+                            {pokemonStatsEle}
+                        </div>
                     </div>
-                    <div className="stat">
-                        <p>hp</p>
-                        <p>attack</p>
-                        <p>defense</p>
-                        <p>special-attack</p>
-                        <p>special-defense</p>
-                        <p>speed</p>
-                    </div>
+                    
                     <button className="release-btn">Release</button>
                 </div>
             ) }
