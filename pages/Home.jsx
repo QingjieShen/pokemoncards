@@ -91,16 +91,16 @@ export default function Home() {
             })
             console.log("push the first pokemon")
         }
+        // sort pokemons by index
+        localPokemons.current.sort((a, b) => {
+            return a.index - b.index
+        })
         localStorage.setItem("myPokemons", JSON.stringify(localPokemons.current))
         console.log("localPokemons:", localPokemons)
     }
 
     const pokemonsElements = pokemons.map(pokemon => (
         <div key={pokemon.index} className="pokemon-unit">
-            {/* <Link to={sprite.index}>
-                <img src={sprite.url} />
-                <h3>{sprite.name}</h3>
-            </Link> */}
             <img src={pokemon.url} />
             <h3>{pokemon.name}</h3>
             <button data-id={pokemon.index} onClick={catchPokemon} className="catch-button">Catch</button>
