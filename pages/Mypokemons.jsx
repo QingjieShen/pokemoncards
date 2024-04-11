@@ -24,14 +24,14 @@ export default function MyPokemons() {
     return (
         <div>
             <div className="my-pokemons-wrapper">
-                {localPokemons.length > 0 ? <h1>Here are your Pokemons</h1> : <h1>You don't have any Pokemon</h1>}
+                {localPokemons.length > 0 ? <h1>Here are your Pokemon</h1> : <h1>You don't have any Pokemon</h1>}
                 {pokemonsElements.length > 0 ?(<div className="pokemons-gallery">
                     {pokemonsElements}
                 </div>) : (
                     <div className="no-pokemon-div">
                     <p>Please go to Home page to catch some.</p>
                     <Link to="/">
-                        <button className="go-home-btn">Catch Pokemons</button>
+                        <button className="go-home-btn">Catch Pokemon</button>
                     </Link>
                 </div>)}
             </div>

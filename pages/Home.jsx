@@ -110,7 +110,7 @@ export default function Home() {
 
     return (
         <div className="home-container">
-            <h1>Some Pokemons are visiting your home</h1>
+            <h1>Some Pokemon are visiting your home</h1>
             <p>Click "Catch" to catch them.</p>
             {isLoading ? <h3>Loading Pokemons Data, Hold on...</h3> : 
             <div className="pokemon-wrapper">
@@ -119,7 +119,7 @@ export default function Home() {
             <div className="home-btn-group">
                 <button className="home-refresh-btn" onClick={refreshPokemons}>Refresh</button>
                 <Link to="/mypokemons">
-                Check my Pokemons
+                Check my Pokemon
                 </Link>
             </div>
         </div>

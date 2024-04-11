@@ -78,7 +78,7 @@ export default function PokemonDetail() {
     return (
         <div className="details-container">
             <Link to="../" relative="path" className="back-btn">
-            &larr; Back to all Pokemons
+            &larr; Back to all Pokemon
             </Link>
             {isLoading ? 
             <h3>Loading Pokemon Detail Info, Hold on...</h3> : 
