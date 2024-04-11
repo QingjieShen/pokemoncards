@@ -11,14 +11,15 @@ This is a simulation game built with ReactJS where you catch Pokémon and level 
 3. run
 > $ npm start
 
-#### Quick View
+### Quick View
 
 [Pokemon card game](https://pokedex-card-game.netlify.app/)
 
 ## Versions
 
-#### v1.0
+### v1.0
 > Release Data: 11/04/2024
+> 
 We are currently in beta version. In this version, you can only
 - Refresh Pokemon.
 - Capture Pokemon (success guaranteed).
@@ -26,7 +27,7 @@ We are currently in beta version. In this version, you can only
 - Check detailed information of each Pokemon.
 - Release Pokemon you don't want anymore.
 
-#### v1.1 preview
+### v1.1 preview
 In this version, we are going to add some more functions to make it more like a game app. The functions may added in this version are:
 - Pokemon classification function in the Pokemon Gallery page. When you have enough pokemon, this will make your lifer easier.
 - Capture will not be guarantedd a success
