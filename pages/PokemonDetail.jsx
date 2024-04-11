@@ -56,17 +56,17 @@ export default function PokemonDetail() {
         return (<span key={index} className={type.type.name}>{type.type.name}</span>)
     })
     const pokemonAbilitiesEle = pokemonAbilities.map((ability, index) => {
-        return (<span key={index} className={ability.ability.name}>{ability.ability.name}</span>)
+        return (<span key={index} className={ability.ability.name}>{(ability.ability.name).replace(/-/g, " ")}</span>)
     })
     const pokemonStatsEle = pokemonStats.map((stat, index) => {
         return (<div key={index}><span>{stat.stat.name}: </span><span>{stat.base_stat}</span></div>)
     })
-    console.log("all extra data set")
+    // console.log("all extra data set")
 
     return (
         <div className="details-container">
             <Link to="../" relative="path" className="back-btn">
-                Back to all Pokemons
+            &larr; Back to all Pokemons
             </Link>
             {isLoading ? 
             <h3>Loading Pokemon Detail Info, Hold on...</h3> : 
@@ -93,11 +93,10 @@ export default function PokemonDetail() {
                                 {pokemonAbilitiesEle}
                             </div>
                         </div>
-                        <div className="stats">
-                            {pokemonStatsEle}
-                        </div>
                     </div>
-                    
+                    <div className="stats">
+                        {pokemonStatsEle}
+                    </div>
                     <button className="release-btn">Release</button>
                 </div>
             ) }

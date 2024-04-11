@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 export default function Home() {
     const [pokemons, setPokemons] = React.useState([])
@@ -115,7 +116,12 @@ export default function Home() {
             <div className="pokemon-wrapper">
                 {pokemonsElements}
             </div>}
-            <button className="home-refresh-btn" onClick={refreshPokemons}>Refresh</button>
+            <div className="home-btn-group">
+                <button className="home-refresh-btn" onClick={refreshPokemons}>Refresh</button>
+                <Link to="/mypokemons">
+                Check my Pokemons
+                </Link>
+            </div>
         </div>
     )
 }

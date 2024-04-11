@@ -19,6 +19,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.146);
 }
 
 .headerNav a {
@@ -34,10 +35,11 @@ footer {
     text-align: center;
     padding: 10px 0;
     background-color: rgb(133, 202, 205);
-    /* position: fixed;
-    bottom: 0; */
+    position: fixed;
+    bottom: 0;
     margin-top: auto;
     width: 100%;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.146);
 }
 
 footer p {
@@ -70,14 +72,23 @@ footer p {
     display: none;
 }
 
-.home-refresh-btn {
+.home-btn-group {
     margin: 3rem auto 6rem auto;
+}
+
+.home-refresh-btn {
+    margin-bottom: 2rem;
     background-color: rgb(210, 116, 21);
     color: white;
     border: none;
     border-radius: 10px;
     padding: 14px;
     width: min(240px, 100%);
+}
+
+.home-btn-group a {
+    text-decoration: none;
+    color: black;
 }
 
 /* normal pokemon card in home page */
@@ -223,6 +234,10 @@ footer p {
 .back-btn {
     display: block;
     margin-bottom: 2rem;
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 400;
 }
 
 .pokemon-details {
@@ -232,11 +247,11 @@ footer p {
 }
 
 .pokemon-info {
+    max-width: 900px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
-
 
 .image-part img {
     width: 100%;
@@ -244,8 +259,17 @@ footer p {
     border-radius: 10px;
 }
 
-.info-part {
+.type {
+    display: flex;
+}
 
+.type span {
+    display: block;
+    margin: 10px 10px;
+    padding: 5px 20px;
+    background-color: rgb(210, 116, 21);
+    border-radius: 20px;
+    color: white;
 }
 
 .info-part h3 {
@@ -276,23 +300,126 @@ footer p {
     width: 100px;
 }
 
+.abilities {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.abilities span {
+    display: block;
+    margin: 5px 5px;
+    padding: 5px 5px;
+    background-color: rgb(133, 202, 205);
+    border-radius: 5px;
+    color: white;
+}
+
 .stats {
     width: 100%;
+    max-width: 900px;
     display: flex;
     flex-direction: column;
-
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .stats div {
-    margin: 0.6rem auto;
+    width: 100%;
+    margin: 0.1rem auto;
     display: grid;
+    gap: 5px;
     grid-template-columns: 2fr 1fr;
 }
 
 .stats span {
     display: block;
+    width: 100%;
+    text-align: center;
+    background-color: rgb(234, 150, 77);
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .release-btn {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    padding: 10px;
+    width: min(240px, 100%);
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(162, 206, 209);
+}
+
+.release-btn:active {
+    transform: none;
+    box-shadow: inset 2px 2px 5px -2px rgba(0,0,0,0.7);
+}
+
+
+@media only screen and (min-width:576px) {
+    .pokemon-wrapper {
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .pokemon-unit {
+        width: 100%;
+        margin: auto;
+    }
     
+    .pokemon-unit img {
+        width: min(300px, 100%);
+    }
+
+    /* Disabled pokemon card in home page */
+    .pokemon-unit-disabled {
+        width: 100%;
+        background-color: rgb(205, 205, 205);
+        margin: auto;
+    }
+
+    .pokemon-unit-disabled img {
+        width: min(300px, 100%);
+        filter: contrast(50%);
+    }
+
+    .pokemons-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (min-width: 762px) {
+    .pokemons-gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .attributes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .attributes p {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+@media only screen and (min-width:992px) {
+    .pokemon-wrapper {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media only screen and (min-width:1200px) {
+    .pokemon-wrapper {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .pokemons-gallery {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
