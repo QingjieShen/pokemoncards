@@ -49,6 +49,18 @@ export default function PokemonDetail() {
         return targetPokemon
     }
 
+    // release Pokemon by ID
+    function removePokemon(id) {
+        let targetPokemonIndex = 0
+        localPokemons.map((poke, index) => {
+            if(poke.id === id) {
+                targetPokemonIndex = index
+            }
+        })
+        localPokemons.splice(targetPokemonIndex,1)
+        localStorage.setItem("myPokemons", JSON.stringify(localPokemons))
+    }
+
     console.log("currentPokemonDetail outside:", currentPokemonDetail)
     console.log("pokemonTypes:", pokemonTypes)
 
@@ -97,7 +109,7 @@ export default function PokemonDetail() {
                     <div className="stats">
                         {pokemonStatsEle}
                     </div>
-                    <button className="release-btn">Release</button>
+                    <button className="release-btn" onClick={() => {removePokemon(pokemonId)}}>Release</button>
                 </div>
             ) }
             
