@@ -8,13 +8,17 @@ export default function MyPokemons() {
 
     const localPokemons = JSON.parse(localStorage.getItem("myPokemons")) || []
     const displayPokemon = localPokemons.length > 0 ? (typeFilter ? localPokemons.filter(poke => {
-        poke.types.map(type => {
+        for (const type of poke.types) {
             if (type.type.name === typeFilter) {
                 return true
             }
-        })
+        }
+        return false
     }) : localPokemons) : localPokemons
     let pokemonsElements = []
+    let displayTitle = `
+        <h1>Here are your Pokemon</h1>
+    `
 
     if(displayPokemon.length > 0) {
         pokemonsElements= displayPokemon.map(localPokemon => (
@@ -26,6 +30,24 @@ export default function MyPokemons() {
                 </Link>
             </div>
         ))
+    }
+
+    if (typeFilter && displayPokemon.length > 0) {
+        displayTitle = 
+        <h1>Here are all {typeFilter.toUpperCase()} Pokemon</h1>
+    
+    } else if (typeFilter && !displayPokemon.length) {
+        displayTitle = 
+        <h1>You don't have any {typeFilter.toUpperCase()} Pokemon</h1>
+    
+    } else if (!typeFilter && !displayPokemon.length) {
+        displayTitle = 
+        <h1>You don't have any Pokemon</h1>
+    
+    } else {
+        displayTitle = 
+        <h1>Here are your Pokemon</h1>
+    
     }
 
     function handleFilterChange(key, value) {
@@ -42,7 +64,7 @@ export default function MyPokemons() {
     return (
         <div>
             <div className="my-pokemons-wrapper">
-                {displayPokemon.length > 0 ? <h1>Here are your Pokemon</h1> : <h1>You don't have any Pokemon</h1>}
+                {displayTitle}
                 <div className="pokemon-type-filter-btns">
                     <button onClick={() => handleFilterChange("type", "normal")} className="pokemon-type-normal">
                         Normal
