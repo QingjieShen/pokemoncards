@@ -20,7 +20,7 @@ export default function MyPokemons() {
         pokemonsElements= displayPokemon.map(localPokemon => (
             <div key={localPokemon.id} className="my-pokemon-unit">
                 <Link to={localPokemon.id}>
-                    <img src={localPokemon.sprites.other.showdown.front_default} />
+                    {localPokemon.sprites.other.showdown.front_default ? <img src={localPokemon.sprites.other.showdown.front_default} /> : <img src={localPokemon.sprites.other["official-artwork"].front_default} />}
                     <h3>{localPokemon.name}</h3>
                 </Link>
             </div>
