@@ -105,6 +105,10 @@ export default function MyPokemons() {
                         Shadow
                     </button>
                 </div>
+                {typeFilter ? (
+                        <button onClick={() => handleFilterChange("type", null)} className="pokemon-type-clear">
+                        Clear filter</button>
+                    ) : null}
                 {pokemonsElements.length > 0 ?(<div className="pokemons-gallery">
                     {pokemonsElements}
                 </div>) : (

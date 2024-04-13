@@ -359,6 +359,12 @@ button.pokemon-type-ghost {
     color: white;
 }
 
+.pokemon-type-clear {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+}
+
 /* Pokemons detail page */
 .details-container {
     padding:20px;
