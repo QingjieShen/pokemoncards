@@ -23,10 +23,15 @@ export default function MyPokemons() {
     if(displayPokemon.length > 0) {
         pokemonsElements= displayPokemon.map(localPokemon => (
             <div key={localPokemon.id} className="my-pokemon-unit">
-                <Link to={localPokemon.id}>
+                <Link 
+                    to={`./${localPokemon.id}`} 
+                    state={{
+                        search: `?${searchParams.toString()}`, 
+                        type: typeFilter
+                    }}
+                >
                     {localPokemon.sprites.other.showdown.front_default ? <img src={localPokemon.sprites.other.showdown.front_default} /> : <img src={localPokemon.sprites.other["official-artwork"].front_default} />}
                     <h3>{(localPokemon.name.charAt(0).toUpperCase() + localPokemon.name.slice(1)).replace(/-/g, " ")}</h3>
-                    
                 </Link>
             </div>
         ))

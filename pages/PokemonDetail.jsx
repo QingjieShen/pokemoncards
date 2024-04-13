@@ -42,7 +42,7 @@ export default function PokemonDetail() {
     function findPokemon(id) {
         let targetPokemon = null
         localPokemons.map(pokemon => {
-            if (pokemon.id === id) {
+            if (pokemon.id == id) {
                 targetPokemon = pokemon
             }
         })
@@ -53,7 +53,7 @@ export default function PokemonDetail() {
     function removePokemon(id) {
         let targetPokemonIndex = 0
         localPokemons.map((poke, index) => {
-            if(poke.id === id) {
+            if(poke.id == id) {
                 targetPokemonIndex = index
             }
         })
@@ -77,40 +77,36 @@ export default function PokemonDetail() {
             <Link to="../" relative="path" className="back-btn">
             &larr; Back to all Pokemon
             </Link>
-            {isLoading ? 
-            <h3>Loading Pokemon Detail Info, Hold on...</h3> : 
-            (
-                <div className="pokemon-details">
-                    <div className="pokemon-info">
-                        <div className="image-part">
-                            <img className="detail-front-img" src={currentPokemon.sprites.other["official-artwork"]["front_default"]} alt="" />
-                            <div className="type">
-                                {pokemonTypesEle}
-                            </div>
-                        </div>
-                        <div className="info-part">
-                            {/* set the first letter to uppercase and replace - with a space */}
-                            <h3 className="detail-name">{(currentPokemon.name.charAt(0).toUpperCase() + currentPokemon.name.slice(1)).replace(/-/g, " ")}</h3>
-                            <div className="attributes">
-                                <p><b>Star: </b><img className="star-img" src="../assets/images/star-solid.svg" alt="" /></p>
-                                <p><b>ID: </b>{currentPokemon.id}</p>
-                                <p><b>Height: </b>{currentPokemon.height}</p>
-                                <p><b>Weight: </b>{currentPokemon.weight}</p>
-                                <p><b>You have: </b>{currentPokemon.num}</p>
-                            </div>
-                            <div className="abilities">
-                                {pokemonAbilitiesEle}
-                            </div>
+            <div className="pokemon-details">
+                <div className="pokemon-info">
+                    <div className="image-part">
+                        <img className="detail-front-img" src={currentPokemon.sprites.other["official-artwork"]["front_default"]} alt="" />
+                        <div className="type">
+                            {pokemonTypesEle}
                         </div>
                     </div>
-                    <div className="stats">
-                        {pokemonStatsEle}
+                    <div className="info-part">
+                        {/* set the first letter to uppercase and replace - with a space */}
+                        <h3 className="detail-name">{(currentPokemon.name.charAt(0).toUpperCase() + currentPokemon.name.slice(1)).replace(/-/g, " ")}</h3>
+                        <div className="attributes">
+                            <p><b>Star: </b><img className="star-img" src="../assets/images/star-solid.svg" alt="" /></p>
+                            <p><b>ID: </b>{currentPokemon.id}</p>
+                            <p><b>Height: </b>{currentPokemon.height}</p>
+                            <p><b>Weight: </b>{currentPokemon.weight}</p>
+                            <p><b>You have: </b>{currentPokemon.num}</p>
+                        </div>
+                        <div className="abilities">
+                            {pokemonAbilitiesEle}
+                        </div>
                     </div>
-                    <Link to="../" relative="path">
-                        <button className="release-btn" onClick={() => {removePokemon(pokemonId)}}>Release</button>
-                    </Link>
                 </div>
-            ) }
+                <div className="stats">
+                    {pokemonStatsEle}
+                </div>
+                <Link to="../" relative="path">
+                    <button className="release-btn" onClick={() => {removePokemon(pokemonId)}}>Release</button>
+                </Link>
+            </div>
             
         </div>
         
