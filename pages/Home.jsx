@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 
 export default function Home() {
     const [pokemons, setPokemons] = React.useState([])
+    // const [pokemonsElements, setPokemonsElements] = React.useState()
     const [fetchingOffset, setFetchingOffset] = React.useState(Math.floor(Math.random() * 1292))
     const [isLoading, setIsLoading] = React.useState(false)
     const url = `https://pokeapi.co/api/v2/pokemon/?offset=${fetchingOffset}&limit=10`
@@ -14,35 +15,30 @@ export default function Home() {
     React.useEffect(() => {
         async function loadPokemons() {
             setIsLoading(true)
-            const res = await fetch(url)
-            if (!res.ok) {
-                throw {
-                    message: "Failed to fetch data"
-                }
+            try {
+                const res = await fetch(url)
+                const data = await res.json()
+                console.log("Data fetched:", data)
+                let detail = []
+                data.results.map(poke => {
+                    async function fetchDetails() {
+                        const response = await fetch(poke.url)
+                        const pokeDetail = await response.json()
+                        console.log("pokeDetail fetched", pokeDetail)
+                        detail.push(pokeDetail)
+                        console.log("detail after push", detail)
+                        setPokemons(detail)
+                        console.log("Pokemon detail Data", pokemons)
+                    }
+                    fetchDetails()
+                })
+            } catch (err) {
+                alert(err)
             }
-            const data = await res.json()
-            console.log("Data fetched:", data)
-            setPokemons(washData(data.results))
-            console.log("Pokemons Data after washing", pokemons)
-            setIsLoading(false)
         }
         loadPokemons()
+        setIsLoading(false)
     }, [fetchingOffset])
-
-    function parseUrl(url) {
-        return url.substring(url.substring(0, url.length - 2).lastIndexOf('/') + 1, url.length - 1)
-    }
-
-    function washData(data) {
-        const washedData = data.map((d) => {
-            return {
-                ...d,
-                url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${parseUrl(d.url)}.png`,
-                index: parseUrl(d.url)
-            }
-        })
-        return washedData
-    }
 
     function refreshPokemons() {
         setFetchingOffset(Math.floor(Math.random() * 1292))
@@ -51,7 +47,7 @@ export default function Home() {
     function getOriginalPokemon(id) {
         let currentPokemon = null
         pokemons.map(pokemon => {
-            if (pokemon.index === id) {
+            if (pokemon.id === id) {
                 currentPokemon = pokemon
             }
         })
@@ -72,7 +68,7 @@ export default function Home() {
         // check if this pokemon is already in the list
         if (localPokemons.current.length > 0) {
             for (const localPokemon of localPokemons.current) {
-                if (localPokemon.index === currentPokemon.index && localPokemon.star === 1) {
+                if (localPokemon.id === currentPokemon.id && localPokemon.star === 1) {
                     localPokemon.num++
                     console.log("update a pokemon")
                     return
@@ -94,19 +90,31 @@ export default function Home() {
         }
         // sort pokemons by index
         localPokemons.current.sort((a, b) => {
-            return a.index - b.index
+            return a.id - b.id
         })
         localStorage.setItem("myPokemons", JSON.stringify(localPokemons.current))
         console.log("localPokemons:", localPokemons)
     }
-
-    const pokemonsElements = pokemons.map(pokemon => (
-        <div key={pokemon.index} className="pokemon-unit">
-            <img src={pokemon.url} />
+/*     React.useEffect(() => {
+        setPokemonsElements(pokemons.map(pokemon => (
+            <div key={pokemon.id} className="pokemon-unit">
+                <img src={pokemon.sprites.other.showdown.front_default} />
+                <h3>{pokemon.name}</h3>
+                <button data-id={pokemon.id} onClick={catchPokemon} className="catch-button">Catch</button>
+            </div>
+        )))
+    }, [pokemons]) */
+    const pokemonsElements = pokemons.map(pokemon => { return (
+        <div key={pokemon.id} className="pokemon-unit">
+            <div className="pokemon-unit-img-container">
+                <img src={pokemon.sprites.other.showdown.front_default} />
+            </div>
             <h3>{pokemon.name}</h3>
-            <button data-id={pokemon.index} onClick={catchPokemon} className="catch-button">Catch</button>
+            <button data-id={pokemon.id} onClick={catchPokemon} className="catch-button">Catch</button>
         </div>
-    ))
+    )})
+    
+    console.log("pokemonsElements set up. here is the pokemonsElements", pokemonsElements)
 
     return (
         <div className="home-container">
@@ -116,6 +124,7 @@ export default function Home() {
             <div className="pokemon-wrapper">
                 {pokemonsElements}
             </div>}
+            {console.log("Actually inserted pokemon elements", pokemonsElements)}
             <div className="home-btn-group">
                 <button className="home-refresh-btn" onClick={refreshPokemons}>Refresh</button>
                 <Link to="/mypokemons">
