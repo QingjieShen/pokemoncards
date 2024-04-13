@@ -1,8 +1,9 @@
 import React from "react";
-import { Link, useParams, useLocation, useSearchParams } from "react-router-dom"
+import { Link, useParams, useLocation } from "react-router-dom"
 
 export default function PokemonDetail() {
     const pokemonId = useParams()
+    const location = useLocation()
     /* const [currentPokemonDetail, setCurrentPokemonDetail] = React.useState({
         types: [],
         abilities: [],
@@ -72,10 +73,13 @@ export default function PokemonDetail() {
     })
     // console.log("all extra data set")
 
+    const search = location.state?.search || ""
+    const type = location.state?.type || "all"
+
     return (
         <div className="details-container">
-            <Link to="../" relative="path" className="back-btn">
-            &larr; Back to all Pokemon
+            <Link to={`..${search}`} relative="path" className="back-btn">
+            &larr; Back to {type} Pokemon
             </Link>
             <div className="pokemon-details">
                 <div className="pokemon-info">
