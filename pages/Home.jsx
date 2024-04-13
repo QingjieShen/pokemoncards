@@ -103,9 +103,9 @@ export default function Home() {
     const pokemonsElements = pokemons.map(pokemon => (
         <div key={pokemon.index} className="pokemon-unit">
             <div className="pokemon-unit-img-container">
-                <img src={pokemon.url} />
+                {pokemon.url? <img src={pokemon.url}/> : <img src="../assets/images/circle-question-regular.svg" />}
             </div>
-            <h3>{pokemon.name}</h3>
+            <h3>{(pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)).replace(/-/g, " ")}</h3>
             <button data-id={pokemon.index} onClick={catchPokemon} className="catch-button">Catch</button>
         </div>
     ))
@@ -121,7 +121,7 @@ export default function Home() {
             <div className="home-btn-group">
                 <button className="home-refresh-btn" onClick={refreshPokemons}>Refresh</button>
                 <Link to="/mypokemons">
-                Check my Pokemon
+                    Check my Pokemon
                 </Link>
             </div>
         </div>
