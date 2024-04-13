@@ -63,7 +63,7 @@ export default function PokemonDetail() {
     }
 
     const pokemonTypesEle = currentPokemon.types.map((type, index) => {
-        return (<span key={index} className={type.type.name}>{type.type.name}</span>)
+        return (<span key={index} className={`pokemon-type-${type.type.name}`}>{type.type.name}</span>)
     })
     const pokemonAbilitiesEle = currentPokemon.abilities.map((ability, index) => {
         return (<span key={index} className={ability.ability.name}>{(ability.ability.name).replace(/-/g, " ")}</span>)
