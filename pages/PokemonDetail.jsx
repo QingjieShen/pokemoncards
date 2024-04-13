@@ -3,21 +3,21 @@ import { Link, useParams, useLocation, useSearchParams } from "react-router-dom"
 
 export default function PokemonDetail() {
     const pokemonId = useParams()
-    const [currentPokemonDetail, setCurrentPokemonDetail] = React.useState({
+    /* const [currentPokemonDetail, setCurrentPokemonDetail] = React.useState({
         types: [],
         abilities: [],
         stats: []
-    })
-    const [isLoading, setIsLoading] = React.useState(false)
-    const [pokemonTypes, setPokemonTypes] = React.useState([])
+    }) */
+    // const [isLoading, setIsLoading] = React.useState(false)
+    /* const [pokemonTypes, setPokemonTypes] = React.useState([])
     const [pokemonAbilities, setPokemonAbilities] = React.useState([])
-    const [pokemonStats, setPokemonStats] = React.useState([])
+    const [pokemonStats, setPokemonStats] = React.useState([]) */
 
     const localPokemons = JSON.parse(localStorage.getItem("myPokemons"))
     const currentPokemon = findPokemon(pokemonId.id)
-    const detailUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId.id}/`
+    // const detailUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId.id}/`
     // console.log(currentPokemon)
-    React.useEffect(() => {
+    /* React.useEffect(() => {
         async function fetchPokemonDetail() {
             setIsLoading(true)
             try {
@@ -36,13 +36,13 @@ export default function PokemonDetail() {
             }
         }
         fetchPokemonDetail()
-    }, [])
+    }, []) */
 
     // this function can be defined as a utility function
     function findPokemon(id) {
         let targetPokemon = null
         localPokemons.map(pokemon => {
-            if (pokemon.index === id) {
+            if (pokemon.id === id) {
                 targetPokemon = pokemon
             }
         })
@@ -61,16 +61,13 @@ export default function PokemonDetail() {
         localStorage.setItem("myPokemons", JSON.stringify(localPokemons))
     }
 
-    console.log("currentPokemonDetail outside:", currentPokemonDetail)
-    console.log("pokemonTypes:", pokemonTypes)
-
-    const pokemonTypesEle = pokemonTypes.map((type, index) => {
+    const pokemonTypesEle = currentPokemon.types.map((type, index) => {
         return (<span key={index} className={type.type.name}>{type.type.name}</span>)
     })
-    const pokemonAbilitiesEle = pokemonAbilities.map((ability, index) => {
+    const pokemonAbilitiesEle = currentPokemon.abilities.map((ability, index) => {
         return (<span key={index} className={ability.ability.name}>{(ability.ability.name).replace(/-/g, " ")}</span>)
     })
-    const pokemonStatsEle = pokemonStats.map((stat, index) => {
+    const pokemonStatsEle = currentPokemon.stats.map((stat, index) => {
         return (<div key={index}><span>{stat.stat.name}: </span><span>{stat.base_stat}</span></div>)
     })
     // console.log("all extra data set")
@@ -86,7 +83,7 @@ export default function PokemonDetail() {
                 <div className="pokemon-details">
                     <div className="pokemon-info">
                         <div className="image-part">
-                            <img className="detail-front-img" src={currentPokemon.url} alt="" />
+                            <img className="detail-front-img" src={currentPokemon.sprites.other["official-artwork"]["front_default"]} alt="" />
                             <div className="type">
                                 {pokemonTypesEle}
                             </div>
@@ -96,9 +93,9 @@ export default function PokemonDetail() {
                             <h3 className="detail-name">{(currentPokemon.name.charAt(0).toUpperCase() + currentPokemon.name.slice(1)).replace(/-/g, " ")}</h3>
                             <div className="attributes">
                                 <p><b>Star: </b><img className="star-img" src="../assets/images/star-solid.svg" alt="" /></p>
-                                <p><b>ID: </b>{currentPokemonDetail.id}</p>
-                                <p><b>Height: </b>{currentPokemonDetail.height}</p>
-                                <p><b>Weight: </b>{currentPokemonDetail.weight}</p>
+                                <p><b>ID: </b>{currentPokemon.id}</p>
+                                <p><b>Height: </b>{currentPokemon.height}</p>
+                                <p><b>Weight: </b>{currentPokemon.weight}</p>
                                 <p><b>You have: </b>{currentPokemon.num}</p>
                             </div>
                             <div className="abilities">

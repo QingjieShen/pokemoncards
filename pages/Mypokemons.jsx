@@ -9,7 +9,7 @@ export default function MyPokemons() {
     const localPokemons = JSON.parse(localStorage.getItem("myPokemons")) || []
     const displayPokemon = localPokemons.length > 0 ? (typeFilter ? localPokemons.filter(poke => {
         poke.types.map(type => {
-            if (type.name === typeFilter) {
+            if (type.type.name === typeFilter) {
                 return true
             }
         })
@@ -18,9 +18,9 @@ export default function MyPokemons() {
 
     if(displayPokemon.length > 0) {
         pokemonsElements= displayPokemon.map(localPokemon => (
-            <div key={localPokemon.index} className="my-pokemon-unit">
-                <Link to={localPokemon.index}>
-                    <img src={localPokemon.url} />
+            <div key={localPokemon.id} className="my-pokemon-unit">
+                <Link to={localPokemon.id}>
+                    <img src={localPokemon.sprites.other.showdown.front_default} />
                     <h3>{localPokemon.name}</h3>
                 </Link>
             </div>
