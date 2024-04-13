@@ -218,6 +218,11 @@ footer p {
     margin-top: 5rem;
 }
 
+.pokemon-type-filter-btns {
+    margin-bottom: 1rem;
+}
+
+
 .pokemon-type-filter-btns > button {
     border: none;
     border-radius: 10px;
@@ -242,6 +247,7 @@ footer p {
 }
 
 .my-pokemon-unit {
+    border-radius: 10px;
     background-color: rgb(133, 202, 205);
     height: 100%;
     padding: 10px;
