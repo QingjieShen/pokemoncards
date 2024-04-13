@@ -243,19 +243,31 @@ footer p {
 
 .my-pokemon-unit {
     background-color: rgb(133, 202, 205);
-    border-radius: 10px;
+    height: 100%;
+    padding: 10px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
+.my-pokemon-unit a{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .my-pokemon-unit img {
-    width: 100%;
+    width: 80%;
+    object-fit: fill;
+    margin-top: 2rem;
+    margin-bottom: auto;
 }
 
 .my-pokemon-unit h3 {
     font-size: 1.5rem;
+    margin-top: 2rem;
     text-align: center;
+    justify-self: end;
 }
 
 /* Pokemons detail page */
