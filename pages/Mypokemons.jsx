@@ -21,7 +21,8 @@ export default function MyPokemons() {
             <div key={localPokemon.id} className="my-pokemon-unit">
                 <Link to={localPokemon.id}>
                     {localPokemon.sprites.other.showdown.front_default ? <img src={localPokemon.sprites.other.showdown.front_default} /> : <img src={localPokemon.sprites.other["official-artwork"].front_default} />}
-                    <h3>{localPokemon.name}</h3>
+                    <h3>{(localPokemon.name.charAt(0).toUpperCase() + localPokemon.name.slice(1)).replace(/-/g, " ")}</h3>
+                    
                 </Link>
             </div>
         ))
