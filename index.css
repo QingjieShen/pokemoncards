@@ -272,6 +272,7 @@ footer p {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin-bottom: 5rem;
+    width: 100%;
 }
 
 .pokemons-gallery a {
@@ -300,7 +301,7 @@ footer p {
 }
 
 .my-pokemon-unit img {
-    width: 80%;
+    width: 100%;
     object-fit: fill;
     margin-top: 2rem;
     margin-bottom: auto;
@@ -310,7 +311,7 @@ footer p {
     font-size: 1.5rem;
     margin-top: 2rem;
     text-align: center;
-    justify-self: end;
+    /* justify-self: end; */
 }
 
 /* Pokemon type filters */
