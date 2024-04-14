@@ -30,7 +30,7 @@ export default function MyPokemons() {
                         type: typeFilter
                     }}
                 >
-                    {localPokemon.sprites.other.showdown.front_default ? <img src={localPokemon.sprites.other.showdown.front_default} /> : <img src={localPokemon.sprites.other["official-artwork"].front_default} />}
+                    {localPokemon.sprites.other.showdown.front_default ? <div><img src={localPokemon.sprites.other.showdown.front_default} /></div> : <div><img src={localPokemon.sprites.other["official-artwork"].front_default} /></div>}
                     <h3>{(localPokemon.name.charAt(0).toUpperCase() + localPokemon.name.slice(1)).replace(/-/g, " ")}</h3>
                 </Link>
             </div>

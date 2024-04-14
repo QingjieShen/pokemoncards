@@ -294,6 +294,16 @@ footer p {
     box-shadow: 1px 5px 10px rgba(235, 235, 235, 0.373);
 }
 
+.my-pokemon-unit a div {
+    width: 100%;
+    height: 100%;
+    margin-top: 2rem;
+    margin-bottom: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .my-pokemon-unit a{
     height: 100%;
     display: flex;
@@ -303,8 +313,7 @@ footer p {
 .my-pokemon-unit img {
     width: 100%;
     object-fit: fill;
-    margin-top: 2rem;
-    margin-bottom: auto;
+    
 }
 
 .my-pokemon-unit h3 {
