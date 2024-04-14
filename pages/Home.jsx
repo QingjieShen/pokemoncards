@@ -48,62 +48,64 @@ export default function Home() {
         setFetchingOffset(Math.floor(Math.random() * 1292))
     }
 
-    function getOriginalPokemon(id) {
-        let currentPokemon = null
-        pokemons.map(pokemon => {
-            if (pokemon.index === id) {
-                currentPokemon = pokemon
-            }
-        })
-        return currentPokemon
-    }
-
-    function updateCatchStatus(e) {
-        e.target.disabled = true
-        e.target.parentElement.className = "pokemon-unit-disabled"
-        e.target.textContent = "Captured"
-    }
-
     function catchPokemon(e) {
-        // find the right pokemon by it's id.
-        const currentPokemon = getOriginalPokemon(e.target.dataset.id)
-        // update catch status
-        updateCatchStatus(e)
-        // check if this pokemon is already in the list
-        if (localPokemons.current.length > 0) {
-            for (const localPokemon of localPokemons.current) {
-                if (localPokemon.index === currentPokemon.index && localPokemon.star === 1) {
-                    localPokemon.num++
-                    console.log("update a pokemon")
-                    return
+        let currentPokemonDetail = []
+        e.target.textContent = "Capturing..."
+        async function getPokemonDetail() {
+            try {
+                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${e.target.dataset.id}/`)
+                const data = await res.json()
+                currentPokemonDetail = data
+                console.log("detail data:", currentPokemonDetail)
+            } catch (err) {
+                alert(err)
+                e.target.disabled = true
+                e.target.parentElement.className = "pokemon-unit-disabled"
+                e.target.textContent = "Capture FAILED"
+            } finally {
+                // check if this pokemon is already in the list
+                if (localPokemons.current.length > 0) {
+                    for (const localPokemon of localPokemons.current) {
+                        if (localPokemon.id === currentPokemonDetail.id && localPokemon.star === 1) {
+                            localPokemon.num++
+                            console.log("update a pokemon")
+                            return
+                        }
+                    }
+                    localPokemons.current.push({
+                        ...currentPokemonDetail,
+                        num: 1,
+                        star: 1
+                    })
+                    console.log("push a new pokemon")
+                } else {
+                    localPokemons.current.push({
+                        ...currentPokemonDetail,
+                        num: 1,
+                        star: 1
+                    })
+                    console.log("push the first pokemon")
                 }
+                // sort pokemons by index
+                localPokemons.current.sort((a, b) => {
+                    return a.id - b.id
+                })
+                localStorage.setItem("myPokemons", JSON.stringify(localPokemons.current))
+                console.log("localPokemons:", localPokemons)
+                e.target.disabled = true
+                e.target.parentElement.className = "pokemon-unit-disabled"
+                e.target.textContent = "Capture SUCCEED"
             }
-            localPokemons.current.push({
-                ...currentPokemon,
-                num: 1,
-                star: 1
-            })
-            console.log("push a new pokemon")
-        } else {
-            localPokemons.current.push({
-                ...currentPokemon,
-                num: 1,
-                star: 1
-            })
-            console.log("push the first pokemon")
         }
-        // sort pokemons by index
-        localPokemons.current.sort((a, b) => {
-            return a.index - b.index
-        })
-        localStorage.setItem("myPokemons", JSON.stringify(localPokemons.current))
-        console.log("localPokemons:", localPokemons)
+        getPokemonDetail()
     }
 
     const pokemonsElements = pokemons.map(pokemon => (
         <div key={pokemon.index} className="pokemon-unit">
-            <img src={pokemon.url} />
-            <h3>{pokemon.name}</h3>
+            <div className="pokemon-unit-img-container">
+                {pokemon.url? <img src={pokemon.url}/> : <img src="../assets/images/circle-question-regular.svg" />}
+            </div>
+            <h3>{(pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)).replace(/-/g, " ")}</h3>
             <button data-id={pokemon.index} onClick={catchPokemon} className="catch-button">Catch</button>
         </div>
     ))
@@ -112,14 +114,14 @@ export default function Home() {
         <div className="home-container">
             <h1>Some Pokemon are visiting your home</h1>
             <p>Click "Catch" to catch them.</p>
-            {isLoading ? <h3>Loading Pokemons Data, Hold on...</h3> : 
+            {isLoading ? <h3>Loading Pokemon Data, Hold on...</h3> : 
             <div className="pokemon-wrapper">
                 {pokemonsElements}
             </div>}
             <div className="home-btn-group">
                 <button className="home-refresh-btn" onClick={refreshPokemons}>Refresh</button>
                 <Link to="/mypokemons">
-                Check my Pokemon
+                    Check my Pokemon
                 </Link>
             </div>
         </div>

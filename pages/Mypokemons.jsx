@@ -8,23 +8,51 @@ export default function MyPokemons() {
 
     const localPokemons = JSON.parse(localStorage.getItem("myPokemons")) || []
     const displayPokemon = localPokemons.length > 0 ? (typeFilter ? localPokemons.filter(poke => {
-        poke.types.map(type => {
-            if (type.name === typeFilter) {
+        for (const type of poke.types) {
+            if (type.type.name === typeFilter) {
                 return true
             }
-        })
+        }
+        return false
     }) : localPokemons) : localPokemons
     let pokemonsElements = []
+    let displayTitle = `
+        <h1>Here are your Pokemon</h1>
+    `
 
     if(displayPokemon.length > 0) {
         pokemonsElements= displayPokemon.map(localPokemon => (
-            <div key={localPokemon.index} className="my-pokemon-unit">
-                <Link to={localPokemon.index}>
-                    <img src={localPokemon.url} />
-                    <h3>{localPokemon.name}</h3>
+            <div key={localPokemon.id} className="my-pokemon-unit">
+                <Link 
+                    to={`./${localPokemon.id}`} 
+                    state={{
+                        search: `?${searchParams.toString()}`, 
+                        type: typeFilter
+                    }}
+                >
+                    {localPokemon.sprites.other.showdown.front_default ? <img src={localPokemon.sprites.other.showdown.front_default} /> : <img src={localPokemon.sprites.other["official-artwork"].front_default} />}
+                    <h3>{(localPokemon.name.charAt(0).toUpperCase() + localPokemon.name.slice(1)).replace(/-/g, " ")}</h3>
                 </Link>
             </div>
         ))
+    }
+
+    if (typeFilter && displayPokemon.length > 0) {
+        displayTitle = 
+        <h1>Here are all {typeFilter.toUpperCase()} Pokemon</h1>
+    
+    } else if (typeFilter && !displayPokemon.length) {
+        displayTitle = 
+        <h1>You don't have any {typeFilter.toUpperCase()} Pokemon</h1>
+    
+    } else if (!typeFilter && !displayPokemon.length) {
+        displayTitle = 
+        <h1>You don't have any Pokemon</h1>
+    
+    } else {
+        displayTitle = 
+        <h1>Here are your Pokemon</h1>
+    
     }
 
     function handleFilterChange(key, value) {
@@ -41,7 +69,7 @@ export default function MyPokemons() {
     return (
         <div>
             <div className="my-pokemons-wrapper">
-                {displayPokemon.length > 0 ? <h1>Here are your Pokemon</h1> : <h1>You don't have any Pokemon</h1>}
+                {displayTitle}
                 <div className="pokemon-type-filter-btns">
                     <button onClick={() => handleFilterChange("type", "normal")} className="pokemon-type-normal">
                         Normal
@@ -104,6 +132,10 @@ export default function MyPokemons() {
                         Shadow
                     </button>
                 </div>
+                {typeFilter ? (
+                        <button onClick={() => handleFilterChange("type", null)} className="pokemon-type-clear">
+                        Clear filter</button>
+                    ) : null}
                 {pokemonsElements.length > 0 ?(<div className="pokemons-gallery">
                     {pokemonsElements}
                 </div>) : (
