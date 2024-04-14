@@ -16,7 +16,7 @@ body {
     display: flex;
     align-items: center;
     color: white;
-    background-color: rgb(133, 202, 205);
+    background-color: rgba(133, 201, 205, 0.843);
     position: fixed;
     top: 0;
     width: 100%;
@@ -36,7 +36,7 @@ footer {
     flex-direction: column;
     text-align: center;
     padding: 10px 0;
-    background-color: rgb(133, 202, 205);
+    background-color: rgba(133, 201, 205, 0.851);
     position: fixed;
     bottom: 0;
     margin-top: auto;
@@ -47,17 +47,25 @@ footer {
 footer p {
     width: 100%;
     margin: 0 0 5px 0;
-    
 }
 
 .home-container {
     display: flex;
     flex-direction: column;
     text-align: center;
+    background-image: url(./assets/images/poke-background1.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: rgb(231, 231, 231);
 }
 
 .home-container h1 {
     margin-top: 5rem;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.391);
+}
+
+.home-container p {
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.391);
 }
 
 .pokemon-wrapper {
@@ -78,30 +86,36 @@ footer p {
     margin: 3rem auto 6rem auto;
 }
 
+.home-btn-group a {
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.391);
+}
+
 .home-refresh-btn {
     margin-bottom: 2rem;
     background-color: rgb(210, 116, 21);
-    color: white;
+    color: rgb(240, 240, 240);
     border: none;
     border-radius: 10px;
     padding: 14px;
     width: min(240px, 100%);
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.391);
 }
 
 .home-btn-group a {
     text-decoration: none;
-    color: black;
+    color: rgb(253, 253, 253);
 }
 
 /* normal pokemon card in home page */
 .pokemon-unit {
     width: 80%;
-    background-color: rgb(133, 202, 205);
+    background-color: rgba(145, 211, 215, 0.714);
     margin: auto 10px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 1px 1px 10px black;
 }
 
 .pokemon-unit a {
@@ -205,6 +219,7 @@ footer p {
     border-radius: 10px;
     padding: 14px;
     width: min(300px, 100%);
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.391);
 }
 
 .my-pokemons-wrapper {
@@ -212,22 +227,33 @@ footer p {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    /* background-image: url(./assets/images/pokemon-party.jpg); */
+    background-repeat: repeat-y;
+    background-size: auto;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)), url("./assets/images/pokemon-party.jpg");
+    min-height: 100vh;
 }
 
 .my-pokemons-wrapper h1 {
     margin-top: 5rem;
+    /* background-color: rgba(255, 255, 255, 0.352); */
+    padding: 10px 20px;
+    color: white;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.391);
 }
 
 .pokemon-type-filter-btns {
     margin-bottom: 1rem;
+    /* background-color: rgba(255, 255, 255, 0.352); */
+    padding: 10px 20px;
 }
-
 
 .pokemon-type-filter-btns > button {
     border: none;
     border-radius: 10px;
     padding: 4px 6px;
     margin: 2px;
+    box-shadow: 1px 2x 3px rgba(0, 0, 0, 0.391);
 }
 
 .pokemons-gallery {
@@ -248,12 +274,13 @@ footer p {
 
 .my-pokemon-unit {
     border-radius: 10px;
-    background-color: rgb(133, 202, 205);
+    background-color: rgba(171, 251, 255, 0.876);
     height: 100%;
     padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 1px 5px 10px rgba(235, 235, 235, 0.373);
 }
 
 .my-pokemon-unit a{
@@ -360,32 +387,49 @@ button.pokemon-type-ghost {
 }
 
 .pokemon-type-clear {
-    border: none;
-    background-color: transparent;
-    border-bottom: 1px solid black;
+    border: 1px solid rgb(26, 26, 26);
+    /* text-decoration: underline; */
+    color: white;
+    background-color: rgb(210, 116, 21);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.no-pokemon-div p {
+    background-color: rgba(255, 255, 255, 0.352);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1.2rem;
 }
 
 /* Pokemons detail page */
 .details-container {
     padding:20px;
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
+    padding-top: 5rem;
     margin-bottom: auto;
     width: 100%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("./assets/images/poke-background2.gif");
+    background-repeat: repeat-y;
+    background-size: cover;
 }
 
 .back-btn {
     display: block;
     margin-bottom: 2rem;
     text-decoration: none;
-    color: black;
+    color: rgb(255, 255, 255);
     font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: 600;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.391);
 }
 
 .pokemon-details {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: white;
 }
 
 .pokemon-info {
@@ -397,8 +441,9 @@ button.pokemon-type-ghost {
 
 .image-part img {
     width: 100%;
-    background-color: rgb(133, 202, 205);
+    background-color: rgba(133, 201, 205, 0.447);
     border-radius: 10px;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.391);
 }
 
 .type {
@@ -463,6 +508,7 @@ button.pokemon-type-ghost {
     flex-direction: column;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.391);
 }
 
 .stats div {
@@ -477,9 +523,11 @@ button.pokemon-type-ghost {
     display: block;
     width: 100%;
     text-align: center;
-    background-color: rgb(234, 150, 77);
+    background-color: rgba(234, 150, 77, 0.755);
     padding: 10px;
     border-radius: 5px;
+    font-weight: 400;
+    color: bl;
 }
 
 .release-btn {
@@ -490,6 +538,7 @@ button.pokemon-type-ghost {
     border-radius: 10px;
     border: none;
     background-color: rgb(162, 206, 209);
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.391);
 }
 
 .release-btn:active {
@@ -533,6 +582,10 @@ button.pokemon-type-ghost {
     .pokemons-gallery {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    .pokemon-info {
+        gap: 20px;
+    }
 }
 
 @media only screen and (min-width: 762px) {
@@ -550,11 +603,33 @@ button.pokemon-type-ghost {
         width: 100%;
         margin: 0;
     }
+
+    .pokemon-info {
+        gap: 40px;
+    }
 }
 
 @media only screen and (min-width:992px) {
     .pokemon-wrapper {
         grid-template-columns: repeat(4, 1fr);
+    }
+    footer {
+        flex-direction: row;
+        padding: 10px 0;
+    }
+    
+    footer p {
+        width: 100%;
+        margin: 0 0 5px 0;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    footer p:nth-child(1) {
+        text-align: left;
+    }
+    footer p:nth-child(2) {
+        text-align: right;
     }
 }
 
