@@ -17,8 +17,19 @@ This is a simulation game built with ReactJS where you catch Pokémon and level 
 
 ## Versions
 
+### v1.1
+> release date: 13/04/2024
+
+> **_NOTE:_**   **Because the local data structure has changed, if your "My Pokemon" page is empty, please deleate your local storage data with the key of "mypokemons".** If you don't know how, please check: [How to clear local storage in Google Chrome (and other browsers 2022)](https://www.leadshook.com/help/how-to-clear-local-storage-in-google-chrome-browser/)
+- Updates visual effect
+- Adds Pokemon type filter and support filter Pokemon by filter
+- Adds search params to the URL
+- Give different types with different colors both on the Pokemon detail page and My Pokemon page
+- Display font gif image on My Pokemon page, if the Pokemon has a gif image.
+- Adds catching state teach Pokemon
+
 ### v1.0
-> Release Data: 11/04/2024
+> Release Date: 11/04/2024
 > 
 We are currently in beta version. In this version, you can only
 - Refresh Pokemon.
@@ -27,9 +38,8 @@ We are currently in beta version. In this version, you can only
 - Check detailed information of each Pokemon.
 - Release Pokemon you don't want anymore.
 
-### v1.1 preview
+### v1.2 preview
 In this version, we are going to add some more functions to make it more like a game app. The functions may added in this version are:
-- Pokemon classification function in the Pokemon Gallery page. When you have enough pokemon, this will make your lifer easier.
 - Capture will not be guarantedd a success
-- Imporove visual effects.
+- Optimize visual effects.
 - Some invisible optimizations at the code level.
