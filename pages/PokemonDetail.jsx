@@ -52,14 +52,14 @@ export default function PokemonDetail() {
 
     // release Pokemon by ID
     function removePokemon(id) {
-        let targetPokemonIndex = 0
+        console.log("target Pokemon id", id)
         localPokemons.map((poke, index) => {
             if(poke.id == id) {
-                targetPokemonIndex = index
+                localPokemons.splice(index,1)
+                console.log("removed id", poke.id)
+                localStorage.setItem("myPokemon", JSON.stringify(localPokemons))
             }
         })
-        localPokemons.splice(targetPokemonIndex,1)
-        localStorage.setItem("myPokemon", JSON.stringify(localPokemons))
     }
 
     const pokemonTypesEle = currentPokemon.types.map((type, index) => {
@@ -108,7 +108,7 @@ export default function PokemonDetail() {
                     {pokemonStatsEle}
                 </div>
                 <Link to="../" relative="path">
-                    <button className="release-btn" onClick={() => {removePokemon(pokemonId)}}>Release</button>
+                    <button className="release-btn" onClick={() => {removePokemon(pokemonId.id)}}>Release</button>
                 </Link>
             </div>
             
