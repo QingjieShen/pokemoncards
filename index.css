@@ -206,6 +206,16 @@ footer p {
     width: 100%;
 }
 
+.no-pokemon-div p {
+    /* background-color: rgba(255, 255, 255, 0.352); */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.391);
+}
+
 .no-pokemon-div a {
     display: block;
     width: 100%;
@@ -393,14 +403,6 @@ button.pokemon-type-ghost {
     background-color: rgb(210, 116, 21);
     padding: 10px 20px;
     border-radius: 5px;
-}
-
-.no-pokemon-div p {
-    background-color: rgba(255, 255, 255, 0.352);
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 1.2rem;
 }
 
 /* Pokemons detail page */
