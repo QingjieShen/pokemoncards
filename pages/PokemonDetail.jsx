@@ -14,7 +14,7 @@ export default function PokemonDetail() {
     const [pokemonAbilities, setPokemonAbilities] = React.useState([])
     const [pokemonStats, setPokemonStats] = React.useState([]) */
 
-    const localPokemons = JSON.parse(localStorage.getItem("myPokemons"))
+    const localPokemons = JSON.parse(localStorage.getItem("myPokemon"))
     const currentPokemon = findPokemon(pokemonId.id)
     // const detailUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId.id}/`
     // console.log(currentPokemon)
@@ -59,7 +59,7 @@ export default function PokemonDetail() {
             }
         })
         localPokemons.splice(targetPokemonIndex,1)
-        localStorage.setItem("myPokemons", JSON.stringify(localPokemons))
+        localStorage.setItem("myPokemon", JSON.stringify(localPokemons))
     }
 
     const pokemonTypesEle = currentPokemon.types.map((type, index) => {

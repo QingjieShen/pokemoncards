@@ -6,7 +6,7 @@ export default function MyPokemons() {
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("type")
 
-    const localPokemons = JSON.parse(localStorage.getItem("myPokemons")) || []
+    const localPokemons = JSON.parse(localStorage.getItem("myPokemon")) || []
     const displayPokemon = localPokemons.length > 0 ? (typeFilter ? localPokemons.filter(poke => {
         for (const type of poke.types) {
             if (type.type.name === typeFilter) {

@@ -7,7 +7,7 @@ export default function Home() {
     const [isLoading, setIsLoading] = React.useState(false)
     const url = `https://pokeapi.co/api/v2/pokemon/?offset=${fetchingOffset}&limit=10`
 
-    const localPokemons = React.useRef(JSON.parse(localStorage.getItem("myPokemons") || "[]" ))
+    const localPokemons = React.useRef(JSON.parse(localStorage.getItem("myPokemon") || "[]" ))
     
     console.log(localPokemons)
 
@@ -90,7 +90,7 @@ export default function Home() {
                 localPokemons.current.sort((a, b) => {
                     return a.id - b.id
                 })
-                localStorage.setItem("myPokemons", JSON.stringify(localPokemons.current))
+                localStorage.setItem("myPokemon", JSON.stringify(localPokemons.current))
                 console.log("localPokemons:", localPokemons)
                 e.target.disabled = true
                 e.target.parentElement.className = "pokemon-unit-disabled"
