@@ -10,8 +10,6 @@ export default function Home() {
     const url = `https://pokeapi.co/api/v2/pokemon/?offset=${fetchingOffset}&limit=10`
 
     const localPokemons = React.useRef(JSON.parse(localStorage.getItem("myPokemon") || "[]" ))
-    
-    console.log(localPokemons)
 
     React.useEffect(() => {
         async function loadPokemons() {
@@ -36,55 +34,62 @@ export default function Home() {
     }
 
     function catchPokemon(e) {
-        let currentPokemonDetail = []
-        e.target.textContent = "Capturing..."
-        async function getPokemonDetail() {
-            try {
-                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${e.target.dataset.id}/`)
-                const data = await res.json()
-                currentPokemonDetail = data
-                console.log("detail data:", currentPokemonDetail)
-            } catch (err) {
-                alert(err)
-                e.target.disabled = true
-                e.target.parentElement.className = "pokemon-unit-disabled"
-                e.target.textContent = "Capture FAILED"
-            } finally {
-                // check if this pokemon is already in the list
-                if (localPokemons.current.length > 0) {
-                    for (const localPokemon of localPokemons.current) {
-                        if (localPokemon.id === currentPokemonDetail.id && localPokemon.star === 1) {
-                            localPokemon.num++
-                            console.log("update a pokemon")
-                            return
+        if (Math.random() < 0.5) {
+            e.target.disabled = true
+            e.target.parentElement.className = "pokemon-unit-failed"
+            e.target.textContent = "Capture FAILED"
+        } else {
+            let currentPokemonDetail = []
+            e.target.textContent = "Capturing..."
+            async function getPokemonDetail() {
+                try {
+                    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${e.target.dataset.id}/`)
+                    const data = await res.json()
+                    currentPokemonDetail = data
+                    console.log("detail data:", currentPokemonDetail)
+                } catch (err) {
+                    alert(err)
+                    e.target.disabled = true
+                    e.target.parentElement.className = "pokemon-unit-disabled"
+                    e.target.textContent = "Capture FAILED"
+                } finally {
+                    // check if this pokemon is already in the list
+                    if (localPokemons.current.length > 0) {
+                        for (const localPokemon of localPokemons.current) {
+                            if (localPokemon.id === currentPokemonDetail.id && localPokemon.star === 1) {
+                                localPokemon.num++
+                                console.log("update a pokemon")
+                                return
+                            }
                         }
+                        localPokemons.current.push({
+                            ...currentPokemonDetail,
+                            num: 1,
+                            star: 1
+                        })
+                        console.log("push a new pokemon")
+                    } else {
+                        localPokemons.current.push({
+                            ...currentPokemonDetail,
+                            num: 1,
+                            star: 1
+                        })
+                        console.log("push the first pokemon")
                     }
-                    localPokemons.current.push({
-                        ...currentPokemonDetail,
-                        num: 1,
-                        star: 1
+                    // sort pokemons by index
+                    localPokemons.current.sort((a, b) => {
+                        return a.id - b.id
                     })
-                    console.log("push a new pokemon")
-                } else {
-                    localPokemons.current.push({
-                        ...currentPokemonDetail,
-                        num: 1,
-                        star: 1
-                    })
-                    console.log("push the first pokemon")
+                    localStorage.setItem("myPokemon", JSON.stringify(localPokemons.current))
+                    console.log("localPokemons:", localPokemons)
+                    e.target.disabled = true
+                    e.target.parentElement.className = "pokemon-unit-disabled"
+                    e.target.textContent = "Capture SUCCEED"
                 }
-                // sort pokemons by index
-                localPokemons.current.sort((a, b) => {
-                    return a.id - b.id
-                })
-                localStorage.setItem("myPokemon", JSON.stringify(localPokemons.current))
-                console.log("localPokemons:", localPokemons)
-                e.target.disabled = true
-                e.target.parentElement.className = "pokemon-unit-disabled"
-                e.target.textContent = "Capture SUCCEED"
             }
+            getPokemonDetail()
         }
-        getPokemonDetail()
+        
     }
 
     const pokemonsElements = pokemons.map(pokemon => (
