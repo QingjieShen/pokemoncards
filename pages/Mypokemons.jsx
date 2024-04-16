@@ -1,6 +1,8 @@
 import React from "react"
 import { Link, useSearchParams } from "react-router-dom"
 
+// import {handleFilterChange} from "../api/api"
+
 
 export default function MyPokemons() {
     const [searchParams, setSearchParams] = useSearchParams()

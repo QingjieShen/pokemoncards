@@ -1,54 +1,12 @@
 import React from "react";
 import { Link, useParams, useLocation } from "react-router-dom"
+import { findPokemon } from "../api/api"
 
 export default function PokemonDetail() {
     const pokemonId = useParams()
     const location = useLocation()
-    /* const [currentPokemonDetail, setCurrentPokemonDetail] = React.useState({
-        types: [],
-        abilities: [],
-        stats: []
-    }) */
-    // const [isLoading, setIsLoading] = React.useState(false)
-    /* const [pokemonTypes, setPokemonTypes] = React.useState([])
-    const [pokemonAbilities, setPokemonAbilities] = React.useState([])
-    const [pokemonStats, setPokemonStats] = React.useState([]) */
-
     const localPokemons = JSON.parse(localStorage.getItem("myPokemon"))
-    const currentPokemon = findPokemon(pokemonId.id)
-    // const detailUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId.id}/`
-    // console.log(currentPokemon)
-    /* React.useEffect(() => {
-        async function fetchPokemonDetail() {
-            setIsLoading(true)
-            try {
-                const res = await fetch(detailUrl)
-                const data = await res.json()
-                console.log("data:", data)
-                setCurrentPokemonDetail(data)
-                setPokemonStats(data.stats)
-                setPokemonAbilities(data.abilities)
-                setPokemonTypes(data.types)
-            } catch (err) {
-                alert(err)
-            } finally {
-                console.log("currentPokemonDetail inside:", currentPokemonDetail)
-                setIsLoading(false)
-            }
-        }
-        fetchPokemonDetail()
-    }, []) */
-
-    // this function can be defined as a utility function
-    function findPokemon(id) {
-        let targetPokemon = null
-        localPokemons.map(pokemon => {
-            if (pokemon.id == id) {
-                targetPokemon = pokemon
-            }
-        })
-        return targetPokemon
-    }
+    const currentPokemon = findPokemon(pokemonId.id, localPokemons)
 
     // release Pokemon by ID
     function removePokemon(id) {

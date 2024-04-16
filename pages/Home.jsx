@@ -1,6 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
+import { parseUrl, washData } from "../api/api"
+
 export default function Home() {
     const [pokemons, setPokemons] = React.useState([])
     const [fetchingOffset, setFetchingOffset] = React.useState(Math.floor(Math.random() * 1292))
@@ -28,21 +30,6 @@ export default function Home() {
         }
         loadPokemons()
     }, [fetchingOffset])
-
-    function parseUrl(url) {
-        return url.substring(url.substring(0, url.length - 2).lastIndexOf('/') + 1, url.length - 1)
-    }
-
-    function washData(data) {
-        const washedData = data.map((d) => {
-            return {
-                ...d,
-                url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${parseUrl(d.url)}.png`,
-                index: parseUrl(d.url)
-            }
-        })
-        return washedData
-    }
 
     function refreshPokemons() {
         setFetchingOffset(Math.floor(Math.random() * 1292))
