@@ -16,6 +16,12 @@ This is a simulation game built with ReactJS where you catch Pokémon and level 
 [Pokemon card game](https://pokedex-card-game.netlify.app/)
 
 ## Versions
+> release date: 15/04/2024
+
+### v1.2
+- Capture will not be guarantedd a success
+- Optimize visual effects.
+- Some invisible optimizations at the code level.
 
 ### v1.1
 > release date: 13/04/2024
@@ -37,9 +43,3 @@ We are currently in beta version. In this version, you can only
 - Preview your Pokemon Gallery.
 - Check detailed information of each Pokemon.
 - Release Pokemon you don't want anymore.
-
-### v1.2 preview
-In this version, we are going to add some more functions to make it more like a game app. The functions may added in this version are:
-- Capture will not be guarantedd a success
-- Optimize visual effects.
-- Some invisible optimizations at the code level.
