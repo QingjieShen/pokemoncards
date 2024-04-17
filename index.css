@@ -107,9 +107,17 @@ footer p {
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.391);
 }
 
+.home-refresh-btn:hover {
+    cursor: pointernp;
+}
+
 .home-btn-group a {
     text-decoration: none;
     color: rgb(253, 253, 253);
+}
+
+.home-btn-group a:hover {
+    cursor: pointer;
 }
 
 /* normal pokemon card in home page */
@@ -158,6 +166,10 @@ footer p {
     background-color: rgb(210, 116, 21);
     color: white;
     font-weight: 600;
+}
+
+.pokemon-unit .catch-button:hover {
+    cursor: pointer;
 }
 
 /* Disabled pokemon card in home page */
@@ -314,6 +326,14 @@ footer p {
     padding: 4px 6px;
     margin: 2px;
     box-shadow: 1px 2x 3px rgba(0, 0, 0, 0.391);
+}
+
+.pokemon-type-filter-btns > button:hover {
+    cursor: pointer;
+}
+
+.pokemon-type-clear:hover {
+    cursor: pointer;
 }
 
 .pokemons-gallery {
@@ -485,6 +505,10 @@ button.pokemon-type-ghost {
     font-size: 1.2rem;
     font-weight: 600;
     text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.391);
+}
+
+.back-btn:hover, .release-btn:hover {
+    cursor: pointer;
 }
 
 .pokemon-details {
