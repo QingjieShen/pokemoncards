@@ -1,24 +1,12 @@
 import React from "react";
 import { Link, useParams, useLocation } from "react-router-dom"
-import { findPokemon } from "../api/api"
+import { findPokemon, removePokemon } from "../api/api"
 
 export default function PokemonDetail() {
     const pokemonId = useParams()
     const location = useLocation()
     const localPokemons = JSON.parse(localStorage.getItem("myPokemon"))
     const currentPokemon = findPokemon(pokemonId.id, localPokemons)
-
-    // release Pokemon by ID
-    function removePokemon(id) {
-        console.log("target Pokemon id", id)
-        localPokemons.map((poke, index) => {
-            if(poke.id == id) {
-                localPokemons.splice(index,1)
-                console.log("removed id", poke.id)
-                localStorage.setItem("myPokemon", JSON.stringify(localPokemons))
-            }
-        })
-    }
 
     const pokemonTypesEle = currentPokemon.types.map((type, index) => {
         return (<span key={index} className={`pokemon-type-${type.type.name}`}>{type.type.name}</span>)
@@ -66,7 +54,7 @@ export default function PokemonDetail() {
                     {pokemonStatsEle}
                 </div>
                 <Link to="../" relative="path">
-                    <button className="release-btn" onClick={() => {removePokemon(pokemonId.id)}}>Release</button>
+                    <button className="release-btn" onClick={() => {removePokemon(pokemonId.id, localPokemons)}}>Release</button>
                 </Link>
             </div>
             
