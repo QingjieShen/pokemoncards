@@ -1,4 +1,5 @@
 import React from "react"
+import PokemonDetailInfo from "../components/PokemonDetailInfo"
 import { Link, useSearchParams } from "react-router-dom"
 
 // import {handleFilterChange} from "../api/api"
@@ -24,18 +25,17 @@ export default function MyPokemons() {
 
     if(displayPokemon.length > 0) {
         pokemonsElements= displayPokemon.map(localPokemon => (
-            <div key={localPokemon.id} className="my-pokemon-unit">
-                <Link 
-                    to={`./${localPokemon.id}`} 
-                    state={{
-                        search: `?${searchParams.toString()}`, 
-                        type: typeFilter
-                    }}
-                >
-                    {localPokemon.sprites.other.showdown.front_default ? <div><img src={localPokemon.sprites.other.showdown.front_default} /></div> : <div><img src={localPokemon.sprites.other["official-artwork"].front_default} /></div>}
-                    <h3>{(localPokemon.name.charAt(0).toUpperCase() + localPokemon.name.slice(1)).replace(/-/g, " ")}</h3>
-                </Link>
-            </div>
+            <PokemonDetailInfo 
+                key={localPokemon.id}
+                link={`./${localPokemon.id}`}
+                state={{
+                    search: `?${searchParams.toString()}`, 
+                    type: typeFilter
+                }}
+                front_default={localPokemon.sprites.other.showdown.front_default}
+                url={localPokemon.sprites.other["official-artwork"].front_default}
+                name={(localPokemon.name.charAt(0).toUpperCase() + localPokemon.name.slice(1)).replace(/-/g, " ")}
+            />
         ))
     }
 
