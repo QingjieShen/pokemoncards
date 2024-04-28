@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-import { parseUrl, washData } from "../api/api"
+import { parseUrl, washData, disableCatchBtn } from "../api/api"
 
 export default function Home() {
     const [pokemons, setPokemons] = React.useState([])
@@ -35,9 +35,7 @@ export default function Home() {
 
     function catchPokemon(e) {
         if (Math.random() < 0.5) {
-            e.target.disabled = true
-            e.target.parentElement.className = "pokemon-unit-failed"
-            e.target.textContent = "Capture FAILED"
+            disableCatchBtn(e, false)
         } else {
             let currentPokemonDetail = []
             e.target.textContent = "Capturing..."
@@ -49,9 +47,7 @@ export default function Home() {
                     console.log("detail data:", currentPokemonDetail)
                 } catch (err) {
                     alert(err)
-                    e.target.disabled = true
-                    e.target.parentElement.className = "pokemon-unit-disabled"
-                    e.target.textContent = "Capture FAILED"
+                    disableCatchBtn(e, false)
                 } finally {
                     // check if this pokemon is already in the list
                     if (localPokemons.current.length > 0) {
@@ -82,9 +78,7 @@ export default function Home() {
                     })
                     localStorage.setItem("myPokemon", JSON.stringify(localPokemons.current))
                     console.log("localPokemons:", localPokemons)
-                    e.target.disabled = true
-                    e.target.parentElement.className = "pokemon-unit-disabled"
-                    e.target.textContent = "Capture SUCCEED"
+                    disableCatchBtn(e, true)
                 }
             }
             getPokemonDetail()

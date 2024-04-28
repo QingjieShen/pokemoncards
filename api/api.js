@@ -22,3 +22,9 @@ export function findPokemon(id, local) {
     })
     return targetPokemon
 }
+
+export function disableCatchBtn(e, isSuccess) {
+    e.target.disabled = true
+    e.target.parentElement.className = isSuccess? "pokemon-unit-disabled" : "pokemon-unit-failed"
+    e.target.textContent = isSuccess? "Capture SUCCEED" :"Capture FAILED"
+}
