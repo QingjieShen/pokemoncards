@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import PokemonBriefInfo from "../components/PokemonBriefInfo"
 
 import { parseUrl, washData, disableCatchBtn } from "../api/api"
 
@@ -87,13 +88,7 @@ export default function Home() {
     }
 
     const pokemonsElements = pokemons.map(pokemon => (
-        <div key={pokemon.index} className="pokemon-unit">
-            <div className="pokemon-unit-img-container">
-                {pokemon.url? <img src={pokemon.url}/> : <img src="../assets/images/circle-question-regular.svg" />}
-            </div>
-            <h3>{(pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)).replace(/-/g, " ")}</h3>
-            <button data-id={pokemon.index} onClick={catchPokemon} className="catch-button">Catch</button>
-        </div>
+        <PokemonBriefInfo key={pokemon.index} url={pokemon.url} name={(pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)).replace(/-/g, " ")} index={pokemon.index} catchPokemon={catchPokemon} />
     ))
 
     return (
