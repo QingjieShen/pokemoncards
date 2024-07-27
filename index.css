@@ -63,6 +63,7 @@ footer p {
     background-repeat: no-repeat;
     background-size: cover;
     color: rgb(231, 231, 231);
+    min-height: 100vh;
 }
 
 .home-container h1 {
